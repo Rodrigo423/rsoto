@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="EstilosProject.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="css/estilo.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <div id="header">
+                <h1><b>SCV</b><span style="color:#FE3F68">++</span></h1>
+            </div>
+            <div id="main">
+                <div id="sidebar">
+                    <ul>
+                        <li><a href="Login.aspx">Login</a></li>
+                        <li><a href="General.aspx">General</a></li>
+                        <li><a href="Resultados.aspx">Resultado</a></li>
+                    </ul>
+                </div>
+                <div id="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="footer">
+                Sistema Voto Electrónico Para Centro de Alumnos
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+

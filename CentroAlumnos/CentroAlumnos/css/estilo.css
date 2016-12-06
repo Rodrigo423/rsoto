@@ -1,0 +1,76 @@
+﻿body {
+    /** rojo, verde, azul 222 F(mas alto)00 .. rojo mas alto, nada, nada **/
+    background-color:#999999;
+    font-family: Arial,Verdana;
+}
+
+#wrapper {
+    width: 1050px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+#header {
+    height: 50px;
+    background-color: #000000;
+    color: #F5D1A1;
+    text-align: center;
+}
+
+#main {
+    overflow: hidden;
+}
+
+#footer {
+    height: 40px;
+    background-color: #000000;
+    clear: both;
+    color:  #F5D1A1;
+    text-align: center;
+}
+
+#sidebar, #content {
+    min-height: 250px;
+    float: left;
+    margin-bottom: -20000px;
+    padding-bottom: 20000px;
+    background-image: url('/mit_scv.jpg');
+    background-repeat: no-repeat;
+    background-color: #000;
+    height: 500px;
+}
+
+#sidebar {
+    background-image: url("/mit_scv.jpg");
+    width: 300px;
+    float: left;
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+
+.formC {
+  background-color: #000;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #fff;
+  opacity: 0.7;
+  height: 300px;
+  filter: alpha(opacity=70);
+  padding: 5%;
+}
+
+.formL {
+  background-color: #000;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  color: #fff;
+  opacity: 0.7;
+  height: 140px;
+  filter: alpha(opacity=70);
+  padding: 5%;
+}
+
+#content {
+    width: 750px;
+}

@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site3.master.cs" Inherits="CentroAlumnos.Site3" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+  <div id="wrapper">
+            <div id="header">
+                <h1><b>SCV</b><span style="color:#FE3F68">++</span></h1>
+            </div>
+            <div id="main">
+                <div id="sidebar">
+                   <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"> </asp:ContentPlaceHolder>
+                </div>
+                <div id="content">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> </asp:ContentPlaceHolder>
+                      </div>
+            </div>
+            <div id="footer">
+                Todos los derechos son reservados &copy scv++ 2016
+            </div>
+        </div>
+</body>
+</html>

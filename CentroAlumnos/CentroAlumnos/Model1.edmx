@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Listas" EntityType="Database1Model.Store.Listas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sedes" EntityType="Database1Model.Store.Sedes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuarios" EntityType="Database1Model.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Votos" EntityType="Database1Model.Store.Votos" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Listas_ToTable" Association="Database1Model.Store.FK_Listas_ToTable">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Listas" EntitySet="Listas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_ToTable" Association="Database1Model.Store.FK_Usuarios_ToTable">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_ToTable" Association="Database1Model.Store.FK_Votos_ToTable">
+            <End Role="Listas" EntitySet="Listas" />
+            <End Role="Votos" EntitySet="Votos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_ToTable_1" Association="Database1Model.Store.FK_Votos_ToTable_1">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Votos" EntitySet="Votos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Listas">
+          <Key>
+            <PropertyRef Name="ListaId" />
+          </Key>
+          <Property Name="ListaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Presidente" Type="nvarchar" MaxLength="50" />
+          <Property Name="VicePresidente" Type="nvarchar" MaxLength="50" />
+          <Property Name="Secretario" Type="nvarchar" MaxLength="50" />
+          <Property Name="SedeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sedes">
+          <Key>
+            <PropertyRef Name="SedeId" />
+          </Key>
+          <Property Name="SedeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zona" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="50" />
+          <Property Name="VotoRealizado" Type="int" />
+          <Property Name="SedeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Votos">
+          <Key>
+            <PropertyRef Name="VotoId" />
+          </Key>
+          <Property Name="VotoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="SedeId" Type="int" />
+          <Property Name="ListaId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Listas_ToTable">
+          <End Role="Sedes" Type="Database1Model.Store.Sedes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Listas" Type="Database1Model.Store.Listas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Listas">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_ToTable">
+          <End Role="Sedes" Type="Database1Model.Store.Sedes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuarios" Type="Database1Model.Store.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_ToTable">
+          <End Role="Listas" Type="Database1Model.Store.Listas" Multiplicity="0..1" />
+          <End Role="Votos" Type="Database1Model.Store.Votos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Listas">
+              <PropertyRef Name="ListaId" />
+            </Principal>
+            <Dependent Role="Votos">
+              <PropertyRef Name="ListaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_ToTable_1">
+          <End Role="Sedes" Type="Database1Model.Store.Sedes" Multiplicity="0..1" />
+          <End Role="Votos" Type="Database1Model.Store.Votos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Votos">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Database1Entities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Listas" EntityType="Database1Model.Listas" />
+          <EntitySet Name="Sedes" EntityType="Database1Model.Sedes" />
+          <EntitySet Name="Usuarios" EntityType="Database1Model.Usuarios" />
+          <EntitySet Name="Votos" EntityType="Database1Model.Votos" />
+          <AssociationSet Name="FK_Listas_ToTable" Association="Database1Model.FK_Listas_ToTable">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Listas" EntitySet="Listas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_ToTable" Association="Database1Model.FK_Votos_ToTable">
+            <End Role="Listas" EntitySet="Listas" />
+            <End Role="Votos" EntitySet="Votos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_ToTable" Association="Database1Model.FK_Usuarios_ToTable">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_ToTable_1" Association="Database1Model.FK_Votos_ToTable_1">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Votos" EntitySet="Votos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Listas">
+          <Key>
+            <PropertyRef Name="ListaId" />
+          </Key>
+          <Property Name="ListaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Presidente" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VicePresidente" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Secretario" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SedeId" Type="Int32" />
+          <NavigationProperty Name="Sedes" Relationship="Database1Model.FK_Listas_ToTable" FromRole="Listas" ToRole="Sedes" />
+          <NavigationProperty Name="Votos" Relationship="Database1Model.FK_Votos_ToTable" FromRole="Listas" ToRole="Votos" />
+        </EntityType>
+        <EntityType Name="Sedes">
+          <Key>
+            <PropertyRef Name="SedeId" />
+          </Key>
+          <Property Name="SedeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zona" Type="Int32" />
+          <NavigationProperty Name="Listas" Relationship="Database1Model.FK_Listas_ToTable" FromRole="Sedes" ToRole="Listas" />
+          <NavigationProperty Name="Usuarios" Relationship="Database1Model.FK_Usuarios_ToTable" FromRole="Sedes" ToRole="Usuarios" />
+          <NavigationProperty Name="Votos" Relationship="Database1Model.FK_Votos_ToTable_1" FromRole="Sedes" ToRole="Votos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rol" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VotoRealizado" Type="Int32" />
+          <Property Name="SedeId" Type="Int32" />
+          <NavigationProperty Name="Sedes" Relationship="Database1Model.FK_Usuarios_ToTable" FromRole="Usuarios" ToRole="Sedes" />
+        </EntityType>
+        <EntityType Name="Votos">
+          <Key>
+            <PropertyRef Name="VotoId" />
+          </Key>
+          <Property Name="VotoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="SedeId" Type="Int32" />
+          <Property Name="ListaId" Type="Int32" />
+          <NavigationProperty Name="Listas" Relationship="Database1Model.FK_Votos_ToTable" FromRole="Votos" ToRole="Listas" />
+          <NavigationProperty Name="Sedes" Relationship="Database1Model.FK_Votos_ToTable_1" FromRole="Votos" ToRole="Sedes" />
+        </EntityType>
+        <Association Name="FK_Listas_ToTable">
+          <End Role="Sedes" Type="Database1Model.Sedes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Listas" Type="Database1Model.Listas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Listas">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_ToTable">
+          <End Role="Listas" Type="Database1Model.Listas" Multiplicity="0..1" />
+          <End Role="Votos" Type="Database1Model.Votos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Listas">
+              <PropertyRef Name="ListaId" />
+            </Principal>
+            <Dependent Role="Votos">
+              <PropertyRef Name="ListaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_ToTable">
+          <End Role="Sedes" Type="Database1Model.Sedes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuarios" Type="Database1Model.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_ToTable_1">
+          <End Role="Sedes" Type="Database1Model.Sedes" Multiplicity="0..1" />
+          <End Role="Votos" Type="Database1Model.Votos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="SedeId" />
+            </Principal>
+            <Dependent Role="Votos">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities1">
+          <EntitySetMapping Name="Listas">
+            <EntityTypeMapping TypeName="Database1Model.Listas">
+              <MappingFragment StoreEntitySet="Listas">
+                <ScalarProperty Name="ListaId" ColumnName="ListaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Presidente" ColumnName="Presidente" />
+                <ScalarProperty Name="VicePresidente" ColumnName="VicePresidente" />
+                <ScalarProperty Name="Secretario" ColumnName="Secretario" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sedes">
+            <EntityTypeMapping TypeName="Database1Model.Sedes">
+              <MappingFragment StoreEntitySet="Sedes">
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Database1Model.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="VotoRealizado" ColumnName="VotoRealizado" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votos">
+            <EntityTypeMapping TypeName="Database1Model.Votos">
+              <MappingFragment StoreEntitySet="Votos">
+                <ScalarProperty Name="VotoId" ColumnName="VotoId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="ListaId" ColumnName="ListaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Predeterminado" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
